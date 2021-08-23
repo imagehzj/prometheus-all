@@ -2,7 +2,7 @@ FROM ttbb/node-exporter:nake AS node
 
 FROM ttbb/prometheus:nake
 
-COPY --from=node /opt/sh/node-exporter /opt/sh/node-exporter
+COPY --from=node /opt/sh/node_exporter /opt/sh/node_exporter
 
 COPY source /opt/sh/mate
 
