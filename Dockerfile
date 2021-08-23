@@ -1,6 +1,6 @@
 FROM ttbb/node-exporter:nake AS node
 
-FROM ttbb/prometheus:stand-alone
+FROM ttbb/prometheus:nake
 
 COPY --from=node /opt/sh/node-exporter /opt/sh/node-exporter
 
