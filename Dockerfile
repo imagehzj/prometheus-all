@@ -4,16 +4,18 @@ FROM ttbb/prometheus:nake
 
 COPY --from=node /opt/sh/node_exporter /opt/sh/node_exporter
 
+ARG TARGETARCH
+
 COPY source /opt/sh/mate
 
-RUN wget https://github.com/prometheus/alertmanager/releases/download/v0.22.2/alertmanager-0.22.2.linux-amd64.tar.gz  && \
+RUN wget https://github.com/prometheus/alertmanager/releases/download/v0.23.0/alertmanager-0.23.0.linux-$TARGETARCH.tar.gz  && \
 mkdir -p /opt/sh/alertmanager && \
-tar -xf alertmanager-0.22.2.linux-amd64.tar.gz -C /opt/sh/alertmanager --strip-components 1 && \
-rm -rf alertmanager-0.22.2.linux-amd64.tar.gz && \
-wget https://github.com/prometheus/pushgateway/releases/download/v1.4.1/pushgateway-1.4.1.linux-amd64.tar.gz && \
+tar -xf alertmanager-0.23.0.linux-$TARGETARCH.tar.gz -C /opt/sh/alertmanager --strip-components 1 && \
+rm -rf alertmanager-0.23.0.linux-$TARGETARCH.tar.gz && \
+wget https://github.com/prometheus/pushgateway/releases/download/v1.4.2/pushgateway-1.4.2.linux-$TARGETARCH.tar.gz && \
 mkdir -p /opt/sh/pushgateway && \
-tar -xf pushgateway-1.4.1.linux-amd64.tar.gz -C /opt/sh/pushgateway --strip-components 1 && \
-rm -rf pushgateway-1.4.1.linux-amd64.tar.gz
+tar -xf pushgateway-1.4.2.linux-$TARGETARCH.tar.gz -C /opt/sh/pushgateway --strip-components 1 && \
+rm -rf pushgateway-1.4.2.linux-$TARGETARCH.tar.gz
 
 WORKDIR /opt/sh
 
